@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'" />
+<meta name="referrer" content="no-referrer" />
+<meta name="theme-color" content="#0E1A2B" />
+<title>Invite a Friend · VELTHON Student Hub</title>
+<meta name="description" content="Invite a friend to VELTHON Student Hub. You both get 20% off the first 3 months, or 10% off a yearly plan." />
+<link rel="icon" href="../favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz@12..96&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #0B182B; --navy-deep: #11233D; --navy: #1B355A; --gold: #E0AA12; --gold-soft: #F4DC8E; --gold-ink: #8A6A0C;
+    --paper: #F7F4EC; --card: #FFFFFF; --line: #E4DFD2; --text: #14213A; --muted: #5D6B80;
+    --display: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+    --body: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  }
+  * { box-sizing: border-box; font-weight: 400; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--paper); color: var(--text); font-family: var(--body); font-size: 16px; line-height: 1.55; }
+  a { color: inherit; }
+  .wrap { width: 100%; max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+  h1, h2, h3 { font-family: var(--display); letter-spacing: -0.02em; margin: 0; }
+
+  /* Top bar */
+  .top { position: absolute; inset: 0 0 auto 0; z-index: 2; }
+  .top .wrap { display: flex; align-items: center; gap: 12px; height: 72px; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; }
+  .brand img { width: 36px; height: 36px; border-radius: 9px; }
+  .brand span { font-family: var(--display); letter-spacing: 0.18em; font-size: 15px; }
+  .brand small { display: block; font-size: 9px; letter-spacing: 0.22em; color: var(--gold-soft); margin-top: 1px; }
+  .spacer { flex: 1; }
+  .langs { display: flex; gap: 2px; background: rgba(255,255,255,0.08); border-radius: 999px; padding: 3px; }
+  .langs button { border: 0; background: transparent; color: #C9D3E2; font: inherit; font-size: 12px; padding: 5px 10px; border-radius: 999px; cursor: pointer; }
+  .langs button[aria-pressed="true"] { background: rgba(255,255,255,0.16); color: #fff; }
+  .open-app { color: #fff; text-decoration: none; font-size: 14px; border: 1px solid rgba(255,255,255,0.28); border-radius: 999px; padding: 7px 14px; white-space: nowrap; }
+  .open-app:hover { border-color: var(--gold); }
+
+  /* Hero */
+  .hero { position: relative; color: #fff; background: var(--navy-deep); overflow: hidden; }
+  .hero::before { content: ""; position: absolute; inset: 0; background: url("campus.jpg") center/cover no-repeat; opacity: 0.32; }
+  .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,24,43,0.55) 0%, rgba(11,24,43,0.92) 78%, var(--navy-deep) 100%); }
+  .hero .wrap { position: relative; z-index: 1; padding-top: 128px; padding-bottom: 72px; display: grid; gap: 40px; grid-template-columns: 1.15fr 0.85fr; align-items: center; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; color: var(--gold-soft); font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; }
+  .eyebrow::before { content: ""; width: 22px; height: 1px; background: var(--gold); }
+  .hero h1 { font-size: clamp(36px, 6vw, 60px); line-height: 1.04; margin: 16px 0 18px; }
+  .hero h1 em { font-style: normal; color: var(--gold); }
+  .hero p.lead { color: #C9D3E2; font-size: 18px; max-width: 34em; margin: 0 0 28px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; border: 0; cursor: pointer; text-decoration: none; font: inherit; font-size: 15px; border-radius: 12px; padding: 13px 20px; transition: transform .15s ease, background .15s ease; }
+  .btn:active { transform: translateY(1px); }
+  .btn-gold { background: var(--gold); color: #13203F; }
+  .btn-gold:hover { background: #EBB82A; }
+  .btn-line { background: rgba(255,255,255,0.06); color: #fff; border: 1px solid rgba(255,255,255,0.24); }
+  .btn-line:hover { border-color: var(--gold); }
+  .btn svg { width: 18px; height: 18px; }
+
+  /* Code card in the hero */
+  .codecard { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); border-radius: 20px; padding: 26px; backdrop-filter: blur(6px); }
+  .codecard .label { color: #C9D3E2; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .code { font-family: var(--display); font-size: 40px; letter-spacing: 0.24em; color: #fff; margin: 6px 0 14px; }
+  .codecard p { color: #C9D3E2; margin: 0 0 18px; font-size: 15px; }
+  .codecard .row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .codecard .btn { padding: 10px 14px; font-size: 14px; }
+  .note { font-size: 13px; color: var(--gold-soft); min-height: 1.2em; margin-top: 10px; }
+
+  /* Offer cards */
+  section { padding: 72px 0; }
+  .section-head { max-width: 640px; margin-bottom: 32px; }
+  .section-head h2 { font-size: clamp(28px, 4vw, 40px); line-height: 1.1; margin: 10px 0 10px; }
+  .section-head p { color: var(--muted); margin: 0; }
+  .kicker { color: var(--gold-ink); font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; }
+  .offers { margin-top: -44px; position: relative; z-index: 2; padding: 0; }
+  .offer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .offer { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 28px; box-shadow: 0 18px 40px -24px rgba(11,24,43,0.35); display: flex; gap: 22px; align-items: flex-start; }
+  .offer .pct { font-family: var(--display); font-size: 64px; line-height: 0.9; color: var(--navy); letter-spacing: -0.04em; }
+  .offer .pct sup { font-size: 26px; vertical-align: top; position: relative; top: 6px; margin-left: 2px; color: var(--gold-ink); }
+  .offer h3 { font-size: 21px; margin: 4px 0 6px; }
+  .offer p { margin: 0; color: var(--muted); font-size: 15px; }
+  .offer .eg { margin-top: 12px; display: inline-block; font-size: 13px; color: var(--gold-ink); background: #FBF2D6; border-radius: 999px; padding: 4px 10px; }
+  .offer.yearly { background: var(--navy); border-color: var(--navy); color: #fff; }
+  .offer.yearly .pct { color: var(--gold); }
+  .offer.yearly .pct sup { color: var(--gold-soft); }
+  .offer.yearly p { color: #C9D3E2; }
+  .offer.yearly .eg { background: rgba(224,170,18,0.16); color: var(--gold-soft); }
+  .both { text-align: center; color: var(--muted); font-size: 14px; margin-top: 16px; }
+
+  /* Steps */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; counter-reset: step; }
+  .step { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 24px; position: relative; }
+  .step::before { counter-increment: step; content: counter(step); font-family: var(--display); width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; background: var(--gold-soft); color: #13203F; font-size: 17px; margin-bottom: 14px; }
+  .step h3 { font-size: 19px; margin-bottom: 6px; }
+  .step p { color: var(--muted); margin: 0; font-size: 15px; }
+
+  /* Features */
+  .features { background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .feature-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; }
+  .feature .ico { width: 44px; height: 44px; border-radius: 12px; background: #EEF2F8; display: grid; place-items: center; margin-bottom: 14px; color: var(--navy); }
+  .feature .ico svg { width: 22px; height: 22px; }
+  .feature h3 { font-size: 18px; margin-bottom: 6px; }
+  .feature p { margin: 0; color: var(--muted); font-size: 15px; }
+
+  /* Closing call to action */
+  .cta { background: var(--navy-deep); color: #fff; border-radius: 26px; padding: 44px; display: flex; gap: 24px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+  .cta h2 { font-size: clamp(26px, 3.6vw, 36px); max-width: 18em; }
+  .cta p { color: #C9D3E2; margin: 8px 0 0; }
+
+  /* Terms */
+  .terms { padding-top: 0; }
+  .terms details { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px 22px; }
+  .terms summary { cursor: pointer; font-family: var(--display); font-size: 18px; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .terms summary::after { content: "+"; color: var(--gold-ink); font-size: 22px; }
+  .terms details[open] summary::after { content: "–"; }
+  .terms ul { margin: 14px 0 4px; padding-left: 20px; color: var(--muted); font-size: 15px; }
+  .terms li { margin: 6px 0; }
+  footer { color: var(--muted); font-size: 13px; padding: 28px 0 40px; text-align: center; }
+
+  [hidden] { display: none !important; }
+  @media (max-width: 860px) {
+    .hero .wrap { grid-template-columns: 1fr; padding-top: 104px; padding-bottom: 76px; }
+    .offer-grid, .steps { grid-template-columns: 1fr; }
+    .feature-grid { grid-template-columns: 1fr 1fr; }
+    .cta { padding: 30px; }
+  }
+  @media (max-width: 520px) {
+    .open-app { display: none; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .offer { flex-direction: column; gap: 10px; padding: 24px; }
+    .code { font-size: 32px; }
+    section { padding: 56px 0; }
+  }
+  @media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="../" aria-label="VELTHON Student Hub">
+      <img src="../icon-192.png" alt="" />
+      <span>VELTHON<small>STUDENT HUB</small></span>
+    </a>
+    <div class="spacer"></div>
+    <div class="langs" role="group" aria-label="Language">
+      <button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button><button type="button" data-lang="es">ES</button>
+    </div>
+    <a class="open-app" href="../" data-t="open">Open Student Hub</a>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow" data-t="eyebrow">Invite a friend</div>
+        <h1><span data-t="h1a">Study better together.</span> <em data-t="h1b">Save together.</em></h1>
+        <p class="lead" data-t="lead">Bring a friend to VELTHON Student Hub. When they join with your code, you both get a discount on Student Hub.</p>
+        <div class="actions">
+          <a class="btn btn-gold" id="primary" href="../"><span data-t="join">Create your account</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn-line" href="#how" data-t="how">How it works</a>
+        </div>
+      </div>
+
+      <!-- Friend arriving with a code -->
+      <div class="codecard" id="friend" hidden>
+        <div class="label" data-t="friendLabel">Your friend's code</div>
+        <div class="code" id="friendCode">——————</div>
+        <p data-t="friendText">It is already filled in for you. Create your account and the discount is saved to both of you.</p>
+        <a class="btn btn-gold" id="friendJoin" href="../" data-t="friendJoin">Join with this code</a>
+      </div>
+
+      <!-- Student sharing their own code -->
+      <div class="codecard" id="share" hidden>
+        <div class="label" data-t="shareLabel">Your code</div>
+        <div class="code" id="shareCode">——————</div>
+        <p data-t="shareText">Send your link to a friend. When they join with it, you both get your discount.</p>
+        <div class="row">
+          <button class="btn btn-gold" type="button" id="copy">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+            <span data-t="copy">Copy link</span></button>
+          <a class="btn btn-line" id="wa" target="_blank" rel="noopener">WhatsApp</a>
+          <a class="btn btn-line" id="mail" data-t="email">Email</a>
+        </div>
+        <div class="note" id="copied" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="offers" aria-labelledby="offers-title">
+    <div class="wrap">
+      <h2 id="offers-title" hidden>Your discount</h2>
+      <div class="offer-grid">
+        <div class="offer">
+          <div class="pct">20<sup>%</sup></div>
+          <div>
+            <h3 data-t="o1t">Off your first 3 months</h3>
+            <p data-t="o1p">On a monthly plan. A great way to start.</p>
+            <span class="eg" data-t="o1e">Student plan: $3.99 a month instead of $4.99</span>
+          </div>
+        </div>
+        <div class="offer yearly">
+          <div class="pct">10<sup>%</sup></div>
+          <div>
+            <h3 data-t="o2t">Off a full year</h3>
+            <p data-t="o2p">On a yearly plan, which already costs less than paying monthly.</p>
+            <span class="eg" data-t="o2e">Student plan: $35.99 a year instead of $39.99</span>
+          </div>
+        </div>
+      </div>
+      <p class="both" data-t="both">Both of you get it: the friend who joins and the student who invited them. Choose one when you subscribe.</p>
+    </div>
+  </section>
+
+  <section id="how" aria-labelledby="how-title">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker" data-t="howK">How it works</div>
+        <h2 id="how-title" data-t="howT">Three simple steps</h2>
+      </div>
+      <div class="steps">
+        <div class="step"><h3 data-t="s1t">Share your link</h3><p data-t="s1p">Find your code in Student Hub under Settings, Invite a friend, or on Today under Student offers.</p></div>
+        <div class="step"><h3 data-t="s2t">Your friend joins</h3><p data-t="s2p">They open your link and create a Student Hub account. Your code is filled in for them.</p></div>
+        <div class="step"><h3 data-t="s3t">You both save</h3><p data-t="s3p">The discount is saved to both accounts and applied automatically when you subscribe.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features" aria-labelledby="feat-title">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker" data-t="featK">Why students use it</div>
+        <h2 id="feat-title" data-t="featT">Everything for your classes, in one secure place</h2>
+      </div>
+      <div class="feature-grid">
+        <div class="feature">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div>
+          <h3 data-t="f1t">Notes and handwriting</h3><p data-t="f1p">Type or write with a pen, on lined, grid or blank paper.</p>
+        </div>
+        <div class="feature">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v5"/></svg></div>
+          <h3 data-t="f2t">Lecture recording</h3><p data-t="f2p">Record classes and turn them into clear notes, kept on your device.</p>
+        </div>
+        <div class="feature">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 10 5-10 5L2 7Z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></div>
+          <h3 data-t="f3t">Flashcards and planner</h3><p data-t="f3p">Review what's due and see every class, exam and deadline.</p>
+        </div>
+        <div class="feature">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M21.5 20a6.5 6.5 0 0 0-4-6"/></svg></div>
+          <h3 data-t="f4t">Study groups</h3><p data-t="f4p">Safe group chats and shared projects with your classmates.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-label="Get started">
+    <div class="wrap">
+      <div class="cta">
+        <div>
+          <h2 data-t="ctaT">Your next semester, better organized.</h2>
+          <p data-t="ctaP">Create your account in a minute. Your discount is waiting.</p>
+        </div>
+        <a class="btn btn-gold" id="ctaBtn" href="../" data-t="join">Create your account</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="terms" aria-label="Offer terms">
+    <div class="wrap">
+      <details>
+        <summary data-t="termsT">Offer terms</summary>
+        <ul>
+          <li data-t="t1">Each student can receive the discount once, either as the friend who joined or as the student who invited.</li>
+          <li data-t="t2">The discount applies to your first paid subscription: 20% off the first 3 months of a monthly plan, or 10% off the first year of a yearly plan.</li>
+          <li data-t="t3">Your own code can't be used on your own account, and two students can't use each other's codes.</li>
+          <li data-t="t4">The discount is saved to your account now and applied automatically when you subscribe. Prices shown are examples in US dollars.</li>
+          <li data-t="t5">VELTHON may change or end this offer. Discounts already saved stay valid.</li>
+        </ul>
+      </details>
+    </div>
+  </section>
+</main>
+<footer>© VELTHON · Student Hub</footer>
+
+<script>
+(function () {
+  var T = {
+    en: {},
+    fr: {
+      open: 'Ouvrir Student Hub', eyebrow: 'Parrainer un ami', h1a: 'Étudiez mieux ensemble.', h1b: 'Économisez ensemble.',
+      lead: 'Faites découvrir VELTHON Student Hub à un ami. Quand il s’inscrit avec votre code, vous obtenez tous les deux une réduction.',
+      join: 'Créer mon compte', how: 'Comment ça marche', friendLabel: 'Le code de votre ami', friendText: 'Il est déjà saisi pour vous. Créez votre compte et la réduction est enregistrée pour vous deux.',
+      friendJoin: 'Rejoindre avec ce code', shareLabel: 'Votre code', shareText: 'Envoyez votre lien à un ami. Quand il s’inscrit, vous obtenez tous les deux votre réduction.',
+      copy: 'Copier le lien', email: 'E-mail', copied: 'Lien copié.',
+      o1t: 'Sur vos 3 premiers mois', o1p: 'Avec un forfait mensuel. Idéal pour commencer.', o1e: 'Forfait Étudiant : 3,99 $ par mois au lieu de 4,99 $',
+      o2t: 'Sur une année complète', o2p: 'Avec un forfait annuel, déjà moins cher que le mensuel.', o2e: 'Forfait Étudiant : 35,99 $ par an au lieu de 39,99 $',
+      both: 'Vous en profitez tous les deux : l’ami qui s’inscrit et l’étudiant qui l’a invité. Choisissez l’une des deux à l’abonnement.',
+      howK: 'Comment ça marche', howT: 'Trois étapes simples', s1t: 'Partagez votre lien', s1p: 'Votre code se trouve dans Student Hub, sous Réglages, Parrainer un ami, ou sur Aujourd’hui, dans Offres étudiantes.',
+      s2t: 'Votre ami s’inscrit', s2p: 'Il ouvre votre lien et crée un compte Student Hub. Votre code est déjà saisi.', s3t: 'Vous économisez tous les deux', s3p: 'La réduction est enregistrée sur les deux comptes et appliquée automatiquement à l’abonnement.',
+      featK: 'Pourquoi les étudiants l’utilisent', featT: 'Tout pour vos cours, au même endroit sécurisé', f1t: 'Notes et écriture manuscrite', f1p: 'Tapez ou écrivez au stylet, sur papier ligné, quadrillé ou blanc.',
+      f2t: 'Enregistrement des cours', f2p: 'Enregistrez vos cours et obtenez des notes claires, gardées sur votre appareil.', f3t: 'Fiches et agenda', f3p: 'Révisez ce qui est dû et voyez chaque cours, examen et échéance.',
+      f4t: 'Groupes d’étude', f4p: 'Discussions de groupe sûres et projets partagés avec vos camarades.', ctaT: 'Votre prochain semestre, mieux organisé.', ctaP: 'Créez votre compte en une minute. Votre réduction vous attend.',
+      termsT: 'Conditions de l’offre', t1: 'Chaque étudiant peut recevoir la réduction une seule fois, comme ami inscrit ou comme parrain.',
+      t2: 'La réduction s’applique à votre premier abonnement payant : 20 % sur les 3 premiers mois d’un forfait mensuel, ou 10 % sur la première année d’un forfait annuel.',
+      t3: 'Votre propre code ne peut pas être utilisé sur votre compte, et deux étudiants ne peuvent pas utiliser le code l’un de l’autre.',
+      t4: 'La réduction est enregistrée maintenant et appliquée automatiquement à l’abonnement. Les prix indiqués sont des exemples en dollars américains.',
+      t5: 'VELTHON peut modifier ou arrêter cette offre. Les réductions déjà enregistrées restent valables.'
+    },
+    es: {
+      open: 'Abrir Student Hub', eyebrow: 'Invita a un amigo', h1a: 'Estudien mejor juntos.', h1b: 'Ahorren juntos.',
+      lead: 'Invita a un amigo a VELTHON Student Hub. Cuando se una con tu código, ambos obtienen un descuento.',
+      join: 'Crear mi cuenta', how: 'Cómo funciona', friendLabel: 'El código de tu amigo', friendText: 'Ya está escrito por ti. Crea tu cuenta y el descuento se guarda para los dos.',
+      friendJoin: 'Unirme con este código', shareLabel: 'Tu código', shareText: 'Envía tu enlace a un amigo. Cuando se una, ambos obtienen su descuento.',
+      copy: 'Copiar enlace', email: 'Correo', copied: 'Enlace copiado.',
+      o1t: 'En tus primeros 3 meses', o1p: 'Con un plan mensual. Ideal para empezar.', o1e: 'Plan Estudiante: 3,99 $ al mes en lugar de 4,99 $',
+      o2t: 'En un año completo', o2p: 'Con un plan anual, que ya cuesta menos que pagar cada mes.', o2e: 'Plan Estudiante: 35,99 $ al año en lugar de 39,99 $',
+      both: 'Lo reciben los dos: el amigo que se une y el estudiante que lo invitó. Elige uno al suscribirte.',
+      howK: 'Cómo funciona', howT: 'Tres pasos sencillos', s1t: 'Comparte tu enlace', s1p: 'Tu código está en Student Hub, en Ajustes, Invita a un amigo, o en Hoy, en Ofertas para estudiantes.',
+      s2t: 'Tu amigo se une', s2p: 'Abre tu enlace y crea una cuenta de Student Hub. Tu código ya está escrito.', s3t: 'Ambos ahorran', s3p: 'El descuento se guarda en las dos cuentas y se aplica automáticamente al suscribirse.',
+      featK: 'Por qué lo usan los estudiantes', featT: 'Todo para tus clases, en un solo lugar seguro', f1t: 'Notas y escritura a mano', f1p: 'Escribe con teclado o lápiz, en papel rayado, cuadriculado o en blanco.',
+      f2t: 'Grabación de clases', f2p: 'Graba tus clases y conviértelas en notas claras, guardadas en tu dispositivo.', f3t: 'Tarjetas y agenda', f3p: 'Repasa lo pendiente y ve cada clase, examen y fecha límite.',
+      f4t: 'Grupos de estudio', f4p: 'Chats de grupo seguros y proyectos compartidos con tus compañeros.', ctaT: 'Tu próximo semestre, mejor organizado.', ctaP: 'Crea tu cuenta en un minuto. Tu descuento te espera.',
+      termsT: 'Condiciones de la oferta', t1: 'Cada estudiante puede recibir el descuento una sola vez, como amigo que se une o como quien invita.',
+      t2: 'El descuento se aplica a tu primera suscripción de pago: 20 % en los primeros 3 meses de un plan mensual, o 10 % en el primer año de un plan anual.',
+      t3: 'Tu propio código no se puede usar en tu cuenta, y dos estudiantes no pueden usar el código del otro.',
+      t4: 'El descuento se guarda ahora en tu cuenta y se aplica automáticamente al suscribirte. Los precios son ejemplos en dólares estadounidenses.',
+      t5: 'VELTHON puede cambiar o terminar esta oferta. Los descuentos ya guardados siguen siendo válidos.'
+    }
+  };
+  // English text is the page itself; keep a copy to switch back.
+  document.querySelectorAll('[data-t]').forEach(function (el) { T.en[el.getAttribute('data-t')] = el.textContent; });
+  T.en.copied = 'Link copied.';
+  var msgs = {
+    en: function (c, l) { return 'Join me on VELTHON Student Hub: notes, lectures, flashcards and planning in one place. With my code ' + c + ' we both get 20% off the first 3 months or 10% off a yearly plan. ' + l; },
+    fr: function (c, l) { return 'Rejoins-moi sur VELTHON Student Hub : notes, cours, fiches et agenda au même endroit. Avec mon code ' + c + ', nous avons tous les deux 20 % sur les 3 premiers mois ou 10 % sur un forfait annuel. ' + l; },
+    es: function (c, l) { return 'Únete a VELTHON Student Hub: notas, clases, tarjetas y agenda en un solo lugar. Con mi código ' + c + ' ambos tenemos 20 % en los primeros 3 meses o 10 % en un plan anual. ' + l; }
+  };
+
+  var q = new URLSearchParams(location.search);
+  var CODE = /^[A-HJ-NP-Z2-9]{6}$/;
+  var friend = (q.get('code') || '').toUpperCase(), mine = (q.get('share') || '').toUpperCase();
+  var app = new URL('../', location.href);
+  var lang = (q.get('lang') || (navigator.language || 'en')).slice(0, 2);
+  if (!T[lang]) lang = 'en';
+
+  function setLang(l) {
+    lang = l;
+    document.documentElement.lang = l;
+    document.querySelectorAll('[data-t]').forEach(function (el) { var v = T[l][el.getAttribute('data-t')] || T.en[el.getAttribute('data-t')]; if (v) el.textContent = v; });
+    document.querySelectorAll('[data-lang]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === l)); });
+    if (CODE.test(mine)) wireShare();
+  }
+  document.querySelectorAll('[data-lang]').forEach(function (b) { b.addEventListener('click', function () { setLang(b.getAttribute('data-lang')); }); });
+
+  // A friend arrived with a code: show it and send "Join" to Student Hub with the code attached.
+  if (CODE.test(friend)) {
+    var join = new URL(app); join.searchParams.set('ref', friend);
+    document.getElementById('friend').hidden = false;
+    document.getElementById('friendCode').textContent = friend;
+    ['friendJoin', 'primary', 'ctaBtn'].forEach(function (id) { document.getElementById(id).href = join.toString(); });
+  }
+  // A student opened their own offer page: show their code and share buttons.
+  function wireShare() {
+    var link = new URL(location.pathname, location.origin); link.searchParams.set('code', mine);
+    var text = msgs[lang](mine, link.toString());
+    document.getElementById('wa').href = 'https://wa.me/?text=' + encodeURIComponent(text);
+    document.getElementById('mail').href = 'mailto:?subject=' + encodeURIComponent('VELTHON Student Hub') + '&body=' + encodeURIComponent(text);
+    document.getElementById('copy').onclick = function () {
+      var done = function () { document.getElementById('copied').textContent = T[lang].copied || T.en.copied; };
+      if (navigator.clipboard) navigator.clipboard.writeText(link.toString()).then(done, function () { prompt('', link.toString()); });
+      else { prompt('', link.toString()); }
+    };
+  }
+  if (CODE.test(mine) && !CODE.test(friend)) {
+    document.getElementById('share').hidden = false;
+    document.getElementById('shareCode').textContent = mine;
+    ['primary', 'ctaBtn'].forEach(function (id) { document.getElementById(id).href = app.toString(); });
+    document.querySelector('#primary [data-t]').setAttribute('data-t', 'open');
+    document.getElementById('ctaBtn').setAttribute('data-t', 'open');
+  }
+  setLang(lang);
+})();
+</script>
+</body>
+</html>
